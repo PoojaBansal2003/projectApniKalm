@@ -1,0 +1,365 @@
+/* html, body{
+  background-color: #c4bec6;
+  display: border-box;
+} */
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ------------- Container Part start ---- */
+  .container {
+    z-index: 1;
+    perspective:10000px;  /* Bassically to see the effect of rotation or it convert the plane into 3d from 2d */
+  }
+/* ------------- Container Part end ------ */
+
+
+/* --------- Book  Part Start----------- */
+
+
+  /* Area of Book how much Space it would take */
+.container .book {
+    position: relative;  
+    display: block;
+    /* width: 26.042vw; 500px */
+    width: 54.042vw; /* 500px */
+    /* width: 500px; */
+    height: 66.32vh;  /* 650px */
+    /* height: 650px; */
+    margin: 5% auto;
+    border-radius: 2px 4px 4px 2px;
+    /* background: linear-gradient(45deg,  #DAD5DC 0%, #f2ebf4 100%); */
+    font-family: acumin-pro, sans-serif;
+    /* -webkit-box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
+    -moz-box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
+    box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6); */
+    /* background-color: purple; */
+    font-weight: 400;
+    color: #2b2b2b;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition: -webkit-transform .5s;
+    -moz-transition: -moz-transform .5s;
+    transition: transform .5s;
+    transform: translateX(-25%);
+  }
+  
+  .container .book:hover{
+    -webkit-transform: rotate3d(0,1,0,35deg);
+    -moz-transform: rotate3d(0,1,0,35deg);
+    /* transform: rotate3d(1,0,1,90deg); */
+    transform: rotate3d(0,5,1,45deg);
+  }
+
+  /* Book JavaScript start */
+  .container .book.slide-book{
+    /* transform: translateX(50px); */
+    transform: none;
+  }
+  /* Book JavaScript End */
+  
+  .container .book > div,  /* this div is bassiclly .front */
+  .container .front .pages #cover {
+    display: block;
+    position: absolute;   /* To overlap the pages of front and left side part of book */
+  }
+
+
+/*  ------Book Part End -------- */
+
+/* ---------Front Part of Book ------------------- */
+
+  /* Front Part Of Book Which we can see in 2d Plane */
+  .container .front {
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transform-origin: 0% 50%;
+    -moz-transform-origin: 0% 50%;
+    transform-origin: 0% 50%;
+    -webkit-transition: -webkit-transform .5s;
+    -moz-transition: -moz-transform .5s;
+    transition: transform .5s;
+    -webkit-transform: translate3d(0,0,20px);
+    -moz-transform: translate3d(0,0,20px);
+    transform: translate3d(0,0,20px);
+    z-index: 1000;
+  }
+  
+  /* Cover page of Book  Start*/
+
+  .container .front .pages #cover {
+    /* width: 26.042vw; 500px */
+    width: 50%;
+    /* width: 500px; */
+    height: 66.32vh; /*  650px */
+    /* height: 650px; */
+  }
+  
+  #cover {
+    background: linear-gradient(45deg,  #DAD5DC 0%, #f2ebf4 100%);
+    /* background: #333;   */
+    /* -webkit-tap-highlight-color: rgba(0, 0, 0, 0); */
+  }
+  
+  .container .front .pages #cover {
+    border-radius: 0 3px 3px 0;
+    box-shadow: 
+      inset 4px 0 10px rgba(0, 0, 0, 0.1);
+  }
+  /* To Add Strip On Cover Page */
+  .container #cover::after {
+    content: '';
+    position: absolute; /* To Add Strip On Cover Page */
+    top: 0;
+    left: 5%;
+    bottom: 0;
+    width: 4px;
+    background: rgba(0,0,0,0.1);
+    box-shadow: 1px 0 3px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Cover page of Book  End */
+
+  
+  /* Pages inside the Book */
+      /* Start */
+
+.pages {
+    /* Single Pages present inside this class */
+
+
+   width: 54.042vw; /* 500px */
+   /* width: 30vw;   576  */
+   height: 66.32vh; /*  650px */
+   /* height: 44vw;   844.8 */
+   /* width: 60vw;   1152px
+   height: 44vw;    844.8px */
+   position: relative;
+   transform-style: preserve-3d;
+   backface-visibility: hidden;  /* To hide the front content of page on back side because the which comes after that will have lesser z-index so it will not overlap on previous page  */
+   border-radius: 4px;
+   /* box-shadow: 0 0 0 1px #e3dfd8; */
+ }
+
+  .page {
+    /* ---Single Page --- */
+
+    width: 26.042vw; /* 500px */
+    /* width: 30vw;   576  */
+
+    height: 66.32vw; /*  650px */
+    /* height: 44vw;   844.8 */
+
+    /* width: 30vw;   576
+    height: 44vw;   844.8 */
+    background-color: #111111;
+    float: left;
+    margin-bottom: 0.5em;
+    background: left top no-repeat;
+    background-size: cover;
+
+    /* -webkit-box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
+    -moz-box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
+    box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6); */
+    /* -webkit-box-shadow: 0px 0px 8px 0px rgba(151, 146, 153,0.6); */
+    /* -moz-box-shadow: 0px 0px 8px 0px rgba(151, 146, 153,0.6); */
+    /* box-shadow: 0px 0px 8px 0px rgba(151, 146, 153,0.6); */
+
+  }
+
+  .front .page{
+    /* Same as Above */
+    float: none;
+    clear: none;
+    padding: 25px;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    /* width: 26.042vw; 500px */
+    width: 50%; /* 500px */
+    /* width: 30vw;   576  */
+
+    height: 66.32vh; /*  650px */
+    /* height: 44vw;   844.8 */
+    /* width: 30vw;
+    height: 44vw; */
+    transform-origin: 0 0;
+    transition: transform 1.4s;
+    backface-visibility: hidden;/* To hide the front content of page on back side because the which comes after that will have lesser z-index so it will not overlap on previous page  */
+    transform-style: preserve-3d;
+    /* cursor: pointer; */
+    /* user-select:contain; */
+    background-color: #f0f0f0;
+
+  }
+  
+  /* Even Page */
+  .page:nth-child(even) {
+    clear: both; /* To Start from New page does not overflow out of page */
+  }
+  .front .page:nth-child(even) {
+    pointer-events: none;
+    transform: rotateY(180deg);
+    transform-origin: 100% 0;
+    left: 0px;  /* To Shift pages or Overlap*/
+    border-radius: 4px 0 0 4px;
+    border-color: black;
+    background-image: linear-gradient(to left, rgba(0,0,0,.18) 0%, rgba(0,0,0,0) 10%);
+  }
+  .front .page:nth-child(even):before {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  /* This is Used if we dont not wanted to click on the element of that page */ 
+  /* .front .page:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(250, 2, 2, 1);
+    transition: background 0.7s;
+    z-index: 0;
+  } */
+
+
+  /* Odd Page  */
+  .page:nth-child(odd){
+    background-position: right top;
+  }
+  .front .page:nth-child(odd) {
+    pointer-events: all;
+    transform: rotateY(0deg);
+    right: 1px;
+    border-radius: 0 4px 4px 0;
+    background-image: linear-gradient(to right, rgba(0,0,0,.18) 0%, rgba(0,0,0,0) 10%);
+  }
+  .front .page:nth-child(odd):hover {
+    transform: rotateY(-15deg);
+  }
+  .front .page:nth-child(odd):hover:before {
+    background: rgba(0, 0, 0, 0.03);
+  }
+  .front .page:nth-child(odd):before {
+    background: rgba(0, 0, 0, 0);
+  }
+  .front .page.grabbing {
+    transition: none;
+  }
+
+
+  /* -- Java Script Of Odd Pages */
+  .front .page.flipped:nth-child(odd) {
+    
+    pointer-events: none;
+    transform: rotateY(-180deg);
+  }
+  .front .page.flipped:nth-child(odd):before {
+    background: rgba(0, 0, 0, 0.2);
+  }
+  /* -- Java Script Of even Pages */
+  .front .page.flipped:nth-child(even) {
+    pointer-events: all;
+    transform: rotateY(0deg);
+  }
+  .front .page.flipped:nth-child(even):hover {
+    transform: rotateY(15deg);
+  }
+  .front .page.flipped:nth-child(even):hover:before {
+    background: rgba(0, 0, 0, 0.03);
+  }
+  .front .page.flipped:nth-child(even):before {
+    background: rgba(0, 0, 0, 0);
+  }
+  * :before,
+  *:after {
+  box-sizing: border-box;
+  }
+
+
+  /*-------- Back Cover of Book Start ----- */
+  .container .front .pages #back-cover {
+    display: block;
+    position: absolute; 
+  }
+  .container .front .pages #back-cover {
+    /* width: 26.042vw; 500px */
+    width: 50%;
+    /* width: 500px; */
+    height: 66.32vh; /*  650px */
+    /* height: 650px; */
+  }
+  #back-cover {
+    /* transform: translateZ(-40px); */
+    background: linear-gradient(45deg,  #DAD5DC 0%, #f2ebf4 100%);
+  }
+  .container .front .pages #back-cover {
+    border-radius: 0 3px 3px 0;
+    box-shadow: 
+      inset 4px 0 10px rgba(0, 0, 0, 0.1);
+  }
+  /* To Add Stips */
+  .container #back-cover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left:95%;
+    bottom: 0;
+    width: 4px;
+    background: rgba(0,0,0,0.1);
+    box-shadow: 1px 0 3px rgba(255, 255, 255, 0.1);
+  }
+
+  /*-------------------- Front Part Of Book End ---------*/
+
+
+  /*---------------- Left Side of Book  Start---------- */
+
+  /* Left Side Of Book view only in 3d */
+  /* Left Side  */
+  .container .left-side{
+    width: 40px;
+    left: 26.042vw;
+    height: 66.32vh; /*  650px */
+    /* height: 650px; */
+    background-color: rgba(232,229,234);
+    -webkit-transform: rotate3d(0,1,0,-90deg);
+    -moz-transform: rotate3d(0,1,0,-90deg);
+    transform: rotate3d(0,1,0,-90deg);
+  }
+  /* Written part on strip */
+  .left-side h1 {
+    width: 26.042vw; /* 500px */
+    /* width: 500px; */
+    height: 40px;
+    color: #2b2b2b;
+    font-size: 25px;
+    line-height: 40px;
+    padding-right: 10px;
+    text-align: right;
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    transform-origin: 0 0;
+    /* -webkit-transform: rotate(90deg) translateY(-40px); */
+    /* -moz-transform: rotate(90deg) translateY(-40px); */
+    transform: rotate(90deg) translateY(-40px);  
+
+  }
+  .left-side h1 span{
+    /* font-weight: 400; */
+    /* font-size: 13px; */
+    padding-right: 20px;
+    transform: rotateY(90deg);
+    font-family: acumin-pro, sans-serif;
+  } 
+
+  /*---------------- Left Side of Book  end---------- */
+  
+
+
